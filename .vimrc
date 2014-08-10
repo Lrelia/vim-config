@@ -24,7 +24,6 @@ set bg=dark
 "colorscheme molokai
 colorscheme desert
 
-
 "配置backspace键工作方式
 set backspace=indent,eol,start
 
@@ -83,16 +82,59 @@ set showmatch
 "短暂跳转到匹配括号的时间
 set matchtime=2
 
+
 "选中状态下Ctrl+c系统复制，与系统剪贴板共用
 vmap <C-c> "+y
 
+"vsplit和split分割窗口
+map <F9> :vsplit <cr>
+map <F10> :split <cr>
+
 filetype off
+
+
+"JAVASCRIPT的折叠设置
+let b:javascript_fold=1
+let javascript_enable_domhtmlcss=1
 
 
 "自定义关联文件类型
 au BufNewFile,BufRead *.less set filetype=css
 au BufNewFile,BufRead *.phtml set filetype=php
-au BufRead,BufNewFile *.js set ft=javascript.jquery
+au BufRead,BufNewFile *.js set filetype=javascript
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
+
+"插件大本营
+"设置jsbeautify
+map <C-f> :call JSBeautify()<cr>
+
+"设置nerdtree
+map <F2> :NERDTreeMirror<cr>
+map <F2> :NERDTreeToggle<cr>
+
+"设置vim-multiple-cursors
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-m>'
+let g:multi_cursor_skip_key='<C-l>'
+let g:multi_cursor_quit_key='<Esc>'
+
+"设置emmet
+let g:user_emmet_expandabbr_key = '<C-x>'
+let g:user_emmet_settings = {
+    \ 'php' : {
+    \ 'extends' : 'html',
+    \ 'filters' : 'c',
+    \ },
+    \ 'xml' : {
+    \ 'extends' : 'html',
+    \ },
+    \ 'haml' : {
+    \    'extends' : 'html',
+    \ },
+\ }
+
+
 
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
@@ -110,7 +152,6 @@ Bundle 'suan/vim-instant-markdown'
 Bundle 'scrooloose/syntastic'
 Bundle 'jQuery'
 Bundle 'vim-scripts/nginx.vim'
-Bundle 'pangloss/vim-javascript'
 Bundle 'vim-scripts/jsbeautify'
 Bundle 'leshill/vim-json'
 
@@ -121,6 +162,7 @@ Bundle 'hail2u/vim-css3-syntax'
 Bundle 'bolasblack/csslint.vim'
 Bundle 'JulesWang/css.vim'
 Bundle 'lilydjwg/colorizer'
+Bundle 'vim-scripts/AutoComplPop'
 
 "=================================AutoComplete==================================
 Bundle 'Shougo/neocomplcache.vim'
@@ -132,6 +174,7 @@ Bundle 'tomasr/molokai'
 Bundle 'altercation/vim-colors-solarized'
 
 "=================================Tool==========================================
+Bundle 'terryma/vim-multiple-cursors'
 Bundle 'shemerey/vim-project'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
@@ -142,6 +185,7 @@ Bundle 'Markdown-syntax'
 Bundle 'php.vim-html-enhanced'
 Bundle 'pangloss/vim-javascript'
 Bundle 'scrooloose/nerdtree'
+Bundle 'vim-scripts/freya'
 
 
 "=================================Git===========================================
